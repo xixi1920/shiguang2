@@ -505,16 +505,7 @@
 document.getElementById('heroVideo').addEventListener('click', function() {
   this.muted = !this.muted;
 });
-var heroVid = document.getElementById('heroVideo');
-if (heroVid) {
-  var link = document.querySelector('a[href="#heroVideo"]');
-  if (link) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      heroVid.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-}
+
  // ===== 小宠物 =====
     const petEl = document.getElementById('pet');
     let mouseX = 0, mouseY = 0, petX = 0, petY = 0, hoverActive = false;
