@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拾光 · 游学空间</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif; background: #faf9f6; color: #2e2e2e; line-height: 1.5; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; flex-wrap: wrap; }
+    .logo-text { font-size: 2.2rem; font-weight: 700; letter-spacing: 2px; color: #3a4e3f; }
+    .logo-sub { font-size: 0.85rem; color: #6b705c; margin-left: 6px; letter-spacing: 1px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: #2e2e2e; font-weight: 500; font-size: 0.95rem; border-bottom: 2px solid transparent; transition: all 0.2s; }
+    .nav-links a:hover { color: #7f8c6b; border-bottom-color: #b6ad90; }
+    .lang-badge { background: #f0ede6; padding: 6px 16px; border-radius: 30px; font-size: 0.85rem; font-weight: 500; color: #3a4e3f; }
+
+    .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 0 50px; position: relative; overflow: hidden; }
+    .hero-tag { background: #e9e4d8; color: #4a5b4c; padding: 6px 20px; border-radius: 30px; font-size: 0.9rem; font-weight: 600; margin-bottom: 24px; }
+    .hero h1 { font-size: 3rem; font-weight: 700; color: #2b3b2c; max-width: 800px; line-height: 1.3; }
+    .highlight { color: #7f8c6b; }
+    .hero p { font-size: 1.15rem; max-width: 650px; margin: 20px auto 30px; color: #4a4a4a; }
+    .cta-button { background: #3a4e3f; color: white; padding: 14px 38px; border-radius: 40px; font-size: 1rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 8px 18px rgba(58,78,63,0.2); transition: all 0.3s; }
+    .cta-button:hover { background: #4d6349; transform: translateY(-2px); }
+
+    .section-title { font-size: 1.9rem; font-weight: 600; color: #2b3b2c; display: flex; align-items: center; gap: 12px; }
+    .section-title i { color: #7f8c6b; font-size: 2rem; }
+    .subhead { color: #5e5e5e; margin-bottom: 32px; font-size: 1.05rem; }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .photo-card { border-radius: 24px; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,0.05); transition: all 0.3s; display: flex; flex-direction: column; }
+    .photo-card:hover { transform: translateY(-6px); box-shadow: 0 20px 35px rgba(0,0,0,0.1); }
+    .card-img { width: 100%; height: 220px; object-fit: cover; }
+    .card-content { padding: 18px 16px 20px; background: white; }
+    .card-content h4 { font-size: 1.15rem; font-weight: 600; color: #2b3b2c; margin-bottom: 6px; }
+    .card-content .location { color: #7f8c6b; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .card-content p { font-size: 0.9rem; color: #4a4a4a; }
+.features-ad { background: #f3f0e9; border-radius: 36px; padding: 48px 32px; margin: 50px 0 60px; display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: space-between; }
+    .feature-text { flex: 1 1 280px; }
+    .feature-text h2 { font-size: 2rem; font-weight: 600; color: #2b3b2c; margin-bottom: 16px; }
+    .feature-list { list-style: none; margin: 24px 0; }
+    .feature-list li { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; font-size: 1.05rem; font-weight: 500; }
+    .feature-list i { color: #7f8c6b; font-size: 1.3rem; width: 28px; text-align: center; }
+    .ad-badge { background: white; border-radius: 20px; padding: 22px 24px; flex: 1 1 240px; text-align: center; box-shadow: 0 14px 24px rgba(0,0,0,0.04); }
+    .ad-badge .price { font-size: 2.3rem; font-weight: 700; color: #3a4e3f; }
+    .ad-badge small { font-size: 0.9rem; color: #5e5e5e; display: block; margin: 6px 0 18px; }
+    .btn-outline { background: white; border: 2px solid #3a4e3f; color: #3a4e3f; padding: 12px 28px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%; margin-top: 8px; font-size: 0.9rem; }
+    .btn-outline:hover { background: #3a4e3f; color: white; }
+
+    .itinerary { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin: 30px 0 50px; }
+    .itin-card { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 8px 18px rgba(0,0,0,0.03); text-align: center; cursor: pointer; transition: all 0.3s; }
+    .itin-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+    .itin-card i { font-size: 2rem; color: #7f8c6b; margin-bottom: 14px; }
+
+    .footer { border-top: 1px solid #e0dbd0; padding: 32px 0 24px; margin-top: 50px; display: flex; justify-content: space-between; flex-wrap: wrap; color: #5e5e5e; }
+
+    .pet { position: fixed; z-index: 9999; pointer-events: none; font-size: 2rem; transition: transform 0.1s ease-out; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+
+    .float-balls-container { position: fixed; bottom: 50px; right: 30px; display: flex; flex-direction: column; gap: 24px; z-index: 999; }
+    .float-ball { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.2); transition: all 0.3s; position: relative; animation: float 3s ease-in-out infinite; }
+    .float-ball i { font-size: 1.5rem; }
+    .float-ball:hover { transform: scale(1.15); }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .ball-tooltip { position: absolute; right: 70px; background: white; color: #2e2e2e; padding: 14px 18px; border-radius: 16px; font-size: 0.9rem; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; }
+    .float-ball.active .ball-tooltip { opacity: 1; visibility: visible; }
+
+    .stamp-inline { width: 38px; height: 38px; border-radius: 50%; background: #d9d2c5; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #8a7e6b; transition: all 0.5s; border: 2px dashed #c8c0b0; }
+    .stamp-inline.earned { background: #3a4e3f; color: #ffd700; border: 2px solid #ffd700; animation: stampEarned 0.6s ease-out; }
+    @keyframes stampEarned { 0% { transform: scale(1.8); } 100% { transform: scale(1); } }
+
+    @media (max-width: 640px) {
+      .navbar { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .hero h1 { font-size: 2rem; }
+      .features-ad { padding: 30px 20px; }
+      .photo-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div><span class="logo-text">拾光</span><span class="logo-sub">TIMEGLOW · 游学</span></div>
+      <div class="nav-links">
+        <a href=" ">Home</a >
+        <a href="#">Programs</a >
+        <a href="#">Gallery</a >
+        <a href="#">Reviews</a >
+        <a href="#">Contact</a >
+        <span class="lang-badge"><i class="fas fa-globe"></i> EN / 中文</span>
+      </div>
+    </nav>
+
+ <section class="hero" style="position: relative; overflow: hidden; padding: 60px 0 70px;">
+  <div id="heroPhotoWall" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.25; z-index: 0; display: grid; grid-template-columns: repeat(10, 1fr); grid-template-rows: repeat(5, 1fr); gap: 4px; padding: 10px; pointer-events: none;"></div>
+  <div style="position: relative; z-index: 2;">
+    <div class="hero-tag">✨ 2025 夏季游学 · 现已开放报名</div>
+    <h1>在<span class="highlight">拾光</span>里，<br>收藏世界的成长光影</h1>
+    <p>专为国际学生设计的文化沉浸体验 · 小班探索 · 中文环境 · 跨文化交流</p >
+<a href= "javascript:void(0)" onclick="document.getElementById('heroVideo').scrollIntoView({behavior:'smooth'})" class="cta-button"><i class="fas fa-compass"></i> 探索游学项目</a >
+  </div>
+</section>
+<!-- 照片墙装饰 -->
+<div style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); z-index: 1; pointer-events: none; display: flex; flex-direction: column; gap: 24px;">
+  <i class="fas fa-camera-retro" style="animation: petalFall 4s ease-in-out infinite; font-size: 1.8rem; color: #7f8c6b;"></i>
+  <i class="fas fa-map-pin" style="animation: petalFall 4s ease-in-out 1s infinite; font-size: 1.5rem; color: #b8860b; margin-left: 25px;"></i>
+  <i class="fas fa-compass" style="animation: petalFall 4s ease-in-out 2s infinite; font-size: 1.6rem; color: #4a7c59; margin-left: 8px;"></i>
+  <i class="fas fa-globe-asia" style="animation: petalFall 4s ease-in-out 3s infinite; font-size: 1.4rem; color: #5b8c85; margin-left: 30px;"></i>
+</div>
+<div style="position: absolute; right: 50px; top: 50%; transform: translateY(-50%); z-index: 1; display: flex; flex-direction: column; gap: 28px;">
+  <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.7); border-radius: 16px; display: flex; align-items: center; justify-content: center; animation: gentleRotate 8s linear infinite; box-shadow: 0 4px 16px rgba(0,0,0,0.08);"><i class="fas fa-mountain" style="font-size: 1.5rem; color: #6b8c42;"></i></div>
+  <div style="width: 48px; height: 48px; background: rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: gentleRotate 10s linear infinite reverse; box-shadow: 0 4px 16px rgba(0,0,0,0.08);"><i class="fas fa-tree" style="font-size: 1.2rem; color: #4a7c59;"></i></div>
+  <div style="width: 54px; height: 54px; background: rgba(255,255,255,0.7); border-radius: 12px; display: flex; align-items: center; justify-content: center; animation: gentleRotate 9s linear infinite; box-shadow: 0 4px 16px rgba(0,0,0,0.08);"><i class="fas fa-sun" style="font-size: 1.4rem; color: #d4a574;"></i></div>
+</div>
+<div style="position: absolute; top: 25px; right: 22%; z-index: 1; display: flex; gap: 28px; pointer-events: none;">
+  <i class="fas fa-star" style="animation: twinkle 2s ease-in-out infinite; font-size: 1rem; color: #d4a574;"></i>
+  <i class="fas fa-heart" style="animation: twinkle 2s ease-in-out 0.5s infinite; font-size: 0.85rem; color: #c47f6b;"></i>
+  <i class="fas fa-circle" style="animation: twinkle 2s ease-in-out 1s infinite; font-size: 0.7rem; color: #7f8c6b;"></i>
+  <i class="fas fa-star" style="animation: twinkle 2s ease-in-out 1.5s infinite; font-size: 0.9rem; color: #b8860b;"></i>
+</div>
+<style>
+  @keyframes gentleRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes petalFall { 0%,100% { transform: translateY(0) rotate(0deg); opacity: 0.7; } 50% { transform: translateY(-15px) rotate(10deg); opacity: 1; } }
+  @keyframes twinkle { 0%,100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); } }
+</style>
+<!-- 拾光瞬间 -->
+<div style="display: flex; align-items: center; justify-content: space-between; margin: 30px 0 12px;">
+  <div class="section-title" style="margin-bottom: 0;"><i class="fas fa-images"></i> 拾光瞬间</div>
+  <button onclick="openBottle()" style="padding: 10px 20px; background: linear-gradient(135deg,#7f8c6b,#5a6e5f); color: white; border: none; border-radius: 25px; cursor: pointer; font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 12px rgba(127,140,107,0.3);"><i class="fas fa-wine-bottle"></i> 漂流瓶</button>
+</div>
+<div class="subhead">每一帧画面，都是游学旅程中真实的故事。</div>
+
+<!-- 视频 -->
+<div style="margin-bottom: 30px; border-radius: 24px; overflow: hidden; box-shadow: 0 12px 28px rgba(0,0,0,0.08);">
+<video id="heroVideo" autoplay loop muted playsinline style="width: 100%; display: block; max-height: 500px; object-fit: cover;" poster="1.jpg">
+  <source src="video.mp4" type="video/mp4">
+</video>
+</div>
+
+<!-- 7个地点卡片 -->
+<div class="photo-grid">
+  <div class="photo-card" onclick="openCityDetail('shenzhen')" style="cursor: pointer; background-image: url('shenzhen.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>体验前沿科创</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 深圳 · 科创硅谷</div><p style="color: #f0ede6; font-size: 0.85rem;">穿越未来之都，畅游科创新海</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" onclick="openCityDetail('haerbin')" style="cursor: pointer; background-image: url('haerbin.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>冰雪文化体验</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 哈尔滨 · 中央大街</div><p style="color: #f0ede6; font-size: 0.85rem;">漫步东方莫斯科，领略北国冰城</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" onclick="openCityDetail('luoyang')" style="cursor: pointer; background-image: url('luoyang.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>感悟千年帝都</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 洛阳 · 钟灵毓秀</div><p style="color: #f0ede6; font-size: 0.85rem;">骑行隋唐城遗址，感悟千古之都</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" onclick="openCityDetail('korea')" style="cursor: pointer; background-image: url('korea-north.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>韩国北区 · 经典之旅</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 仁川 · 首尔 · 釜山</div><p style="color: #f0ede6; font-size: 0.85rem;">仁川登陆，首尔穿越，釜山海云台</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" onclick="openCityDetail('jeju')" style="cursor: pointer; background-image: url('korea-south.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>韩国南区 · 海岛风情</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 济州岛</div><p style="color: #f0ede6; font-size: 0.85rem;">汉拿山徒步，偶来小路，海女文化</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" style="background-image: url('shanghai.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>更多目的地</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-globe-asia"></i> 其他地区探索中</div><p style="color: #f0ede6; font-size: 0.85rem;">更多精彩游学线路即将上线</p ></div>
+    </div>
+  </div>
+
+  <div class="photo-card" onclick="openWishWall()" style="cursor: pointer; background-image: url('ouzhou.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
+      <div><h4>探索奇幻世界</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-pencil-alt"></i> 心愿留言墙</div><p style="color: #f0ede6; font-size: 0.85rem;">写下你的游学梦想，看看世界的回响</p ></div>
+        </div>
+      </div>
+    </div>
+<!-- 广告区 -->
+  <div class="features-ad">
+    <div class="feature-text">
+      <h2>为什么选择"拾光"？</h2>
+      <ul class="feature-list">
+        <li><i class="fas fa-check-circle"></i> 全英文辅助 + 沉浸中文环境</li>
+        <li><i class="fas fa-check-circle"></i> 小团深度体验 (6-12人)</li>
+        <li><i class="fas fa-check-circle"></i> 安全住宿 & 当地家庭互动</li>
+        <li><i class="fas fa-check-circle"></i> 大学认证文化课程证书</li>
+        <li><i class="fas fa-check-circle"></i> 24/7 支持团队</li>
+      </ul>
+    </div>
+    <div class="ad-badge">
+      <i class="fas fa-gem" style="font-size: 2rem; color: #7f8c6b;"></i>
+      <div class="price">¥****</div>
+      <small>起 / 8天游学套餐</small>
+      <p style="margin: 12px 0; color: #2e2e2e;">含住宿·游玩·特色活动</p >
+      <button class="btn-outline" onclick="openBrochure()"><i class="fas fa-paper-plane"></i> 获取行程手册</button>
+      <p style="font-size: 0.75rem; margin-top: 12px; color: #6b705c;">优惠进行中</p >
+      <button class="btn-outline" onclick="openPuzzle()"><i class="fas fa-puzzle-piece"></i> 游学拼图</button>
+    </div>
+  </div>
+
+  <!-- 推荐游学节奏 + 印章 -->
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+    <div class="section-title" style="margin-bottom: 0;"><i class="fas fa-calendar-alt"></i> 推荐游学节奏</div>
+    <div style="display: flex; gap: 6px; align-items: center;">
+      <span style="font-size: 0.75rem; color: #6b705c; margin-right: 4px;">护照印章</span>
+      <div class="stamp-inline" id="stampSZ"><i class="fas fa-robot"></i></div>
+      <div class="stamp-inline" id="stampHEB"><i class="far fa-snowflake"></i></div>
+      <div class="stamp-inline" id="stampLY"><i class="fas fa-landmark"></i></div>
+      <div class="stamp-inline" id="stampKR"><i class="fas fa-globe-asia"></i></div>
+    </div>
+  </div>
+  <div class="itinerary">
+    <div class="itin-card" onclick="openDetail('culture')"><i class="fas fa-landmark"></i><h4>文化沉浸</h4><p>畅游各地景点，体昧各地文化风情</p ></div>
+    <div class="itin-card" onclick="openDetail('food')"><i class="fas fa-utensils"></i><h4>美食寻访</h4><p>畅享街头特色美食</p ></div>
+    <div class="itin-card" onclick="openDetail('nature')"><i class="fas fa-hiking"></i><h4>自然户外</h4><p>登山，徒步</p ></div>
+    <div class="itin-card" onclick="openDetail('language')"><i class="fas fa-comments"></i><h4>语言交换</h4><p>中文氛围渲染，互动</p ></div>
+  </div>
+
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div><strong>拾光 · TimeGlow</strong><br><span style="font-size:0.9rem;">游学空间 | 为中国与世界搭建桥梁</span></div>
+    <div style="display: flex; gap: 24px; align-items: center;">
+      <span><i class="far fa-envelope"></i> hello@timeglow.cn</span>
+      <span><i class="fab fa-instagram"></i> timeglow.study</span>
+      <span style="font-size:0.9rem;">&copy; 2025 拾光游学</span>
+    </div>
+  </footer>
+</div>
+<!-- 小宠物 -->
+<div class="pet" id="pet"><i class="far fa-smile" style="font-size:2rem;color:#7f8c6b;"></i></div>
+
+<!-- 悬浮球 -->
+<div class="float-balls-container">
+  <div class="float-ball" onclick="toggleBall(this)" style="background: linear-gradient(135deg,#00bcd4,#0097a7);animation-delay:0s;"><i class="fas fa-robot"></i><div class="ball-tooltip"><div class="tooltip-title">深圳</div><div class="tooltip-desc">中国硅谷</div></div></div>
+  <div class="float-ball" onclick="toggleBall(this)" style="background: linear-gradient(135deg,#42a5f5,#1e88e5);animation-delay:0.5s;"><i class="far fa-snowflake"></i><div class="ball-tooltip"><div class="tooltip-title">哈尔滨</div><div class="tooltip-desc">冰城夏都</div></div></div>
+  <div class="float-ball" onclick="toggleBall(this)" style="background: linear-gradient(135deg,#d4a574,#b8860b);animation-delay:1s;"><i class="fas fa-landmark"></i><div class="ball-tooltip"><div class="tooltip-title">洛阳</div><div class="tooltip-desc">千年古都</div></div></div>
+  <div class="float-ball" onclick="toggleBall(this)" style="background: linear-gradient(135deg,#7f8c6b,#5a6e5f);animation-delay:1.5s;"><i class="fas fa-globe-asia"></i><div class="ball-tooltip"><div class="tooltip-title">韩国</div><div class="tooltip-desc">K-Culture</div></div></div>
+</div>
+<!-- 弹窗公共样式 -->
+<style>
+  .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; display: none; align-items: center; justify-content: center; }
+  .detail-overlay.show { display: flex; }
+  .detail-panel { background: #fefcf7; border-radius: 28px; width: 95%; max-width: 900px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3); position: relative; padding: 0; animation: slideUp 0.4s ease-out; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .detail-close { position: absolute; top: 16px; right: 20px; background: #3a4e3f; border: none; font-size: 1.3rem; cursor: pointer; color: white; width: 40px; height: 40px; border-radius: 50%; z-index: 10; transition: all 0.3s; }
+  .detail-close:hover { background: #5a6e5f; transform: rotate(90deg); }
+  .detail-intro { font-size: 1.05rem; color: #3a3a3a; line-height: 1.9; padding-left: 20px; border-left: 3px solid #d4c5a0; text-align: justify; }
+  .detail-intro::first-letter { font-size: 2.5rem; font-weight: 700; color: #7f8c6b; float: left; line-height: 1; margin-right: 8px; }
+  .tag { background: #f0ede6; padding: 6px 14px; border-radius: 20px; font-weight: 500; font-size: 0.8rem; color: #3a4e3f; display: inline-flex; align-items: center; gap: 6px; }
+  .detail-photo-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .photo-item { aspect-ratio: 1/1; background-size: cover; background-position: center; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+  .photo-item:hover { transform: scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,0.2); z-index: 2; }
+  .fun-flip-card { height: 80px; perspective: 600px; cursor: pointer; margin-top: 12px; }
+  .flip-inner { width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; position: relative; }
+  .fun-flip-card:hover .flip-inner { transform: rotateY(180deg); }
+  .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 10px; font-weight: 600; }
+  .flip-front { background: linear-gradient(135deg,#f0ede6,#e9e4d8); color: #3a4e3f; border: 2px dashed #c8ceb7; }
+  .flip-back { background: #3a4e3f; color: #fefcf7; transform: rotateY(180deg); padding: 12px; font-size: 0.9rem; font-weight: 400; text-align: center; }
+  .fun-counter { display: flex; align-items: center; gap: 14px; background: #f0ede6; border-radius: 14px; padding: 14px 18px; margin-top: 12px; }
+  .counter-btn { background: #3a4e3f; color: white; border: none; padding: 10px 18px; border-radius: 20px; cursor: pointer; font-weight: 500; }
+  .counter-btn:hover { background: #5a6e5f; }
+  @media (max-width: 640px) { .detail-photo-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>
+
+<div class="detail-overlay" id="brochureOverlay">
+  <div class="detail-panel" style="padding: 40px 36px; max-width: 750px;">
+    <button class="detail-close" onclick="closeBrochure()">&times;</button>
+    <h2 style="color:#3a4e3f;text-align:center;margin-bottom:6px;"><i class="fas fa-globe-asia" style="color:#7f8c6b;"></i> 拾光 · 深圳8日研学手册</h2>
+    <p style="text-align:center;color:#7f8c6b;margin-bottom:4px;">💌 最好的课堂，在山河人间。</p >
+    <p style="text-align:center;font-size:0.85rem;color:#6b705c;margin-bottom:4px;">⛳ 全程四大主题：📀科技探索  📀名校浸润  📀国风美育  💿城市人文</p >
+    <p style="text-align:center;font-size:0.85rem;color:#6b705c;margin-bottom:4px;">📽 陪伴孩子：走出课堂（游世界）探索城市（长见识）触摸科技（向未来）传承国风（立远志）</p >
+    <p style="text-align:center;font-size:0.8rem;color:#b0a89a;margin-bottom:16px;">🛋 全程入住：深圳三钻品质酒店 · 舒适｜安全｜整洁</p >
+    <div style="display:grid;gap:10px;margin-top:12px;">
+      <div style="background:#fff;border-left:5px solid #00bcd4;border-radius:12px;padding:14px;"><strong>🎉 DAY1 · 逐梦启程</strong><br>团队集结抵达，接机入住酒店。开营团队组建、营规宣讲、旅程展望。<br><em>开营寄语：每一次出发，都是全新成长。</em></div>
+      <div style="background:#fff;border-left:5px solid #7f8c6b;border-radius:12px;padding:14px;"><strong>🎉 DAY2 · 科技美育 艺术浸润</strong><br>上午｜科技立方：沉浸体验科普、展览、艺术美育空间。下午｜世界文化艺术中心：打卡网红滨海地标，欣赏纯白极简建筑美学。<br><em>成长收获：审美提升、科学启蒙、城市认知</em></div>
+      <div style="background:#fff;border-left:5px solid #00bcd4;border-radius:12px;padding:14px;"><strong>🎉 DAY3 · 科创未来 智创少年</strong><br>上午｜未来科技城：深研九大前沿科技实验室。下午｜前海石公园+欢乐海岸。<br><em>成长收获：动手实践、开拓视野、科创未来</em></div>
+      <div style="background:#fff;border-left:5px solid #3a4e3f;border-radius:12px;padding:14px;"><strong>🎉 DAY4 · 名校筑梦 笃行成长</strong><br>上午｜深大名校研学，游最美大学校园。下午｜工业展览馆，了解深圳工业崛起史。<br><em>成长收获：树立目标、励志成长</em></div>
+      <div style="background:#fff;border-left:5px solid #d4a574;border-radius:12px;padding:14px;"><strong>🎉 DAY5 · 古城寻韵 溯源文脉</strong><br>国风手工体验｜古风绘扇。城市研学｜南头古城深度游览，探访深圳千年文脉发源地。<br><em>成长收获：文化自信、审美素养</em></div>
+      <div style="background:#fff;border-left:5px solid #c47f6b;border-radius:12px;padding:14px;"><strong>🎉 DAY6 · 国风雅艺 都市新潮</strong><br>国风美育二选一：中国结编织/国风简画。下午｜未来感网红时尚商圈打卡。<br><em>成长收获：动手能力、审美创新</em></div>
+      <div style="background:#fff;border-left:5px solid #5b8c85;border-radius:12px;padding:14px;"><strong>🎉 DAY7 · 文化分享 夜色深圳</strong><br>趣味猜盒文化课程。傍晚｜人才公园夜景研学，俯瞰深圳超级城市夜景。<br><em>成长收获：总结复盘、眼界提升</em></div>
+      <div style="background:#fff;border-left:5px solid #f57c00;border-radius:12px;padding:14px;"><strong>🎉 DAY8 · 满载收官 圆满归途</strong><br>整理行李、总结收获，统一送机，圆满结束。……平安返程……</div>
+    </div>
+    <p style="text-align:center;margin-top:20px;color:#7f8c6b;font-weight:600;">📬 研学总结寄语</p >
+    <p style="text-align:center;color:#4a4a4a;font-size:0.9rem;">读万卷书，行万里路，所有遇见，皆是成长。科技未来、千年古城、体验顶尖名校、领略都市山海。</p >
+    <p style="text-align:center;color:#b0a89a;font-size:0.85rem;">☀ 愿少年：心怀山海，眼有星光，不负时光，不负己。</p >
+  </div>
+</div>
+<!-- 文化沉浸弹窗 -->
+<div class="detail-overlay" id="cultureOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeDetail('culture')">&times;</button><div style="background:linear-gradient(135deg,#3a4e3f,#5a6e5f);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-landmark" style="font-size:2.5rem;margin-bottom:10px;"></i><h2>文化沉浸</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;background:#fefcf7;"><div class="detail-intro">在深圳探访南头古城，感受科技之城的千年根基；在哈尔滨圣索菲亚教堂聆听百年钟声；在洛阳龙门石窟与千年佛像对话；在韩国景福宫穿越朝鲜王朝。每站配有匠人带领的亲手体验：唐三彩制作、韩纸工艺、毛笔书法……让文化从指尖流淌进心里。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 四国文化之旅</span></div><div class="fun-flip-card"><div class="flip-inner"><div class="flip-front"><i class="fas fa-lightbulb"></i> 你知道吗？</div><div class="flip-back"><p>龙门石窟有超过10万尊佛像！</p ></div></div></div><div class="fun-counter"><span style="font-size:1.5rem;color:#c47f6b;"><i class="fas fa-heart"></i></span><span id="likeCulture">0</span><span>人觉得有趣</span><button class="counter-btn" onclick="addLike('culture')"><i class="fas fa-thumbs-up"></i></button></div></div><div class="detail-photo-col" style="flex:1 1 400px;padding:28px;"><div class="detail-photo-grid" id="cultureGrid"></div></div></div></div></div>
+
+<!-- 美食寻访弹窗 -->
+<div class="detail-overlay" id="foodOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeDetail('food')">&times;</button><div style="background:linear-gradient(135deg,#c47f6b,#e07b7b);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-utensils" style="font-size:2.5rem;margin-bottom:10px;"></i><h2>美食寻访</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;background:#fefcf7;"><div class="detail-intro">深圳的粤式早茶、潮汕牛肉火锅；哈尔滨的铁锅炖、俄式西餐；洛阳的水席二十四道、牛肉汤配烧饼；韩国的石锅拌饭、韩牛烤肉、街头辣年糕。每站都有烹饪课堂，学包饺子、做泡菜、炒宫保鸡丁，让美味成为可以带回家的技艺。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-fire"></i> 烹饪体验课</span></div><div class="fun-flip-card"><div class="flip-inner"><div class="flip-front"><i class="fas fa-lightbulb"></i> 你知道吗？</div><div class="flip-back"><p>洛阳水席共24道菜，8凉16热！</p ></div></div></div><div class="fun-counter"><span style="font-size:1.5rem;color:#c47f6b;"><i class="fas fa-heart"></i></span><span id="likeFood">0</span><span>人觉得有趣</span><button class="counter-btn" onclick="addLike('food')"><i class="fas fa-thumbs-up"></i></button></div></div><div class="detail-photo-col" style="flex:1 1 400px;padding:28px;"><div class="detail-photo-grid" id="foodGrid"></div></div></div></div></div>
+
+<!-- 自然户外弹窗 -->
+<div class="detail-overlay" id="natureOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeDetail('nature')">&times;</button><div style="background:linear-gradient(135deg,#4a7c59,#6b8c42);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-hiking" style="font-size:2.5rem;margin-bottom:10px;"></i><h2>自然户外</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;background:#fefcf7;"><div class="detail-intro">深圳东西涌海岸线徒步，碧海蓝天尽收眼底；哈尔滨松花江畔骑行，夏日微风拂面；洛阳龙门山登高，俯瞰千年石窟；韩国汉拿山徒步，偶来小路蜿蜒。每次出行有专业领队护航，辨认植物、观察候鸟，大自然是最生动的课堂。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-leaf"></i> 专业安全保障</span></div><div class="fun-flip-card"><div class="flip-inner"><div class="flip-front"><i class="fas fa-lightbulb"></i> 你知道吗？</div><div class="flip-back"><p>深圳东西涌被《国家地理》评为中国最美海岸线之一！</p ></div></div></div><div class="fun-counter"><span style="font-size:1.5rem;color:#c47f6b;"><i class="fas fa-heart"></i></span><span id="likeNature">0</span><span>人觉得有趣</span><button class="counter-btn" onclick="addLike('nature')"><i class="fas fa-thumbs-up"></i></button></div></div><div class="detail-photo-col" style="flex:1 1 400px;padding:28px;"><div class="detail-photo-grid" id="natureGrid"></div></div></div></div></div>
+
+<!-- 语言交换弹窗 -->
+<div class="detail-overlay" id="languageOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeDetail('language')">&times;</button><div style="background:linear-gradient(135deg,#5b8c85,#3a6b6b);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-comments" style="font-size:2.5rem;margin-bottom:10px;"></i><h2>语言交换</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;background:#fefcf7;"><div class="detail-intro">深圳大学校园语言角，与大学生面对面交流；哈尔滨俄语角，异域风情中练习对话；洛阳匠人传授工艺时学方言；韩国首尔弘大街头，K-pop韩语挑战。傍晚分享会，用新学的词汇讲述见闻，每天进步一点点。趣味游戏：绕口令、成语接龙、情景对话。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-globe"></i> 多语种交流</span></div><div class="fun-flip-card"><div class="flip-inner"><div class="flip-front"><i class="fas fa-lightbulb"></i> 你知道吗？</div><div class="flip-back"><p>全球有超过1.5亿人在学习中文！</p ></div></div></div><div class="fun-counter"><span style="font-size:1.5rem;color:#c47f6b;"><i class="fas fa-heart"></i></span><span id="likeLanguage">0</span><span>人觉得有趣</span><button class="counter-btn" onclick="addLike('language')"><i class="fas fa-thumbs-up"></i></button></div></div><div class="detail-photo-col" style="flex:1 1 400px;padding:28px;"><div class="detail-photo-grid" id="languageGrid"></div></div></div></div></div>
+<!-- 深圳弹窗 -->
+<div class="detail-overlay" id="cityShenzhenOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('shenzhen')">&times;</button><div style="background:linear-gradient(135deg,#00bcd4,#0097a7);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-robot" style="font-size:2.5rem;"></i><h2>深圳 · 科创硅谷</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">深圳，40年从边陲小镇蜕变为国际都市的奇迹。华为、腾讯、大疆诞生于此，华强北被誉为"硬件硅谷"。南头古城藏着1700年历史，深圳湾公园、大鹏所城……科技与自然完美融合。拾光带你走进腾讯总部，漫步深圳湾，感受这座不眠之城的脉搏。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 广东·珠三角</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#0097a7;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+
+<!-- 哈尔滨弹窗 -->
+<div class="detail-overlay" id="cityHaerbinOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('haerbin')">&times;</button><div style="background:linear-gradient(135deg,#42a5f5,#1e88e5);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="far fa-snowflake" style="font-size:2.5rem;"></i><h2>哈尔滨 · 冰城夏都</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">哈尔滨，被冰雪亲吻的城市。中央大街百年石路，圣索菲亚教堂穹顶熠熠生辉。冬季冰雪大世界如梦似幻，夏季太阳岛绿意盎然。秋林红肠、马迭尔冰棍、铁锅炖……北国风味让人难忘。拾光带你穿越中央大街，松花江畔听风，感受冰城的浪漫与坚韧。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 黑龙江·东北</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#1e88e5;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+
+<!-- 洛阳弹窗 -->
+<div class="detail-overlay" id="cityLuoyangOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('luoyang')">&times;</button><div style="background:linear-gradient(135deg,#d4a574,#b8860b);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-landmark" style="font-size:2.5rem;"></i><h2>洛阳 · 千年古都</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">洛阳，十三朝古都。龙门石窟十万佛像静默千年，白马寺钟声是中国佛教第一声回响。四月牡丹花开满城，洛阳水席流淌盛唐遗风。牛肉汤配烧饼是最温暖的清晨。拾光带你走进龙门山色，制作唐三彩，感受华夏文明的厚重与辉煌。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 河南·中原</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#b8860b;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+
+<!-- 韩国北区弹窗 -->
+<div class="detail-overlay" id="cityKoreaOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('korea')">&times;</button><div style="background:linear-gradient(135deg,#f57c00,#e65100);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-globe-asia" style="font-size:2.5rem;"></i><h2>韩国北区 · 经典之旅</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">仁川登陆，首尔穿越，釜山海云台——韩国北区经典三城之旅。景福宫韩服体验，弘大街头K-pop舞蹈，明洞购物天堂，釜山札嘎其海鲜市场。韩牛烤肉、石锅拌饭、街头辣年糕，K-culture深度体验。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 仁川·首尔·釜山</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#f57c00;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+
+<!-- 韩国南区弹窗 -->
+<div class="detail-overlay" id="cityJejuOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('jeju')">&times;</button><div style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-umbrella-beach" style="font-size:2.5rem;"></i><h2>韩国南区 · 济州海岛</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">济州岛，韩国的火山海岛明珠。汉拿山徒步登顶，偶来小路沿海蜿蜒，城山日出峰看日出。海女文化体验，品尝现捕海鲜。绿茶博物馆、泰迪熊博物馆，每一处都充满海岛独有的浪漫与惊喜。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 济州岛</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#27ae60;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+
+<!-- 心愿墙弹窗 -->
+<div class="detail-overlay" id="wishWallOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeWishWall()">&times;</button><div style="background:linear-gradient(135deg,#3a4e3f,#5a6e5f);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-feather-alt" style="font-size:2.5rem;"></i><h2>拾光 · 心愿留言墙</h2></div><div style="display:flex;flex-wrap:wrap;min-height:400px;"><div style="flex:1 1 320px;padding:28px;"><input id="wishName" placeholder="你的名字" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><input id="wishCountry" placeholder="你来自哪里？" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><textarea id="wishMessage" placeholder="写下你的心愿..." rows="4" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;resize:vertical;font-family:inherit;"></textarea><button onclick="submitWish()" style="width:100%;padding:14px;background:#3a4e3f;color:white;border:none;border-radius:14px;font-size:1.1rem;font-weight:600;cursor:pointer;"><i class="fas fa-paper-plane"></i> 发布心愿</button></div><div style="flex:1 1 380px;padding:28px;background:#f5f2eb;max-height:450px;overflow-y:auto;" id="wishList"><div id="wishEmpty" style="text-align:center;color:#b0a89a;padding:60px 20px;"><i class="fas fa-inbox" style="font-size:3rem;"></i><p>还没有心愿留言</p ></div></div></div></div></div>
+
+  <!-- 拼图弹窗 -->
+  <div class="detail-overlay" id="puzzleOverlay"><div class="detail-panel" style="max-width:500px;padding:30px;text-align:center;"><button class="detail-close" onclick="closePuzzle()">&times;</button><h3><i class="fas fa-puzzle-piece"></i> 游学拼图</h3><div class="detail-photo-grid" id="puzzleBoard" style="grid-template-columns:repeat(3,1fr);width:300px;margin:16px auto;"></div><button onclick="shufflePuzzle()" style="padding:10px 24px;background:#3a4e3f;color:white;border:none;border-radius:20px;cursor:pointer;font-weight:600;"><i class="fas fa-random"></i> 重新打乱</button><p id="puzzleMsg" style="margin-top:10px;font-weight:600;color:#3a4e3f;"></p ></div></div>
+
+  <!-- 漂流瓶弹窗 -->
+  <div class="detail-overlay" id="bottleOverlay"><div class="detail-panel" style="max-width:550px;padding:0;overflow:hidden;"><button class="detail-close" onclick="closeBottle()" style="z-index:10;color:white;background:rgba(0,0,0,0.3);">&times;</button><div style="background:linear-gradient(180deg,#1a3a5c,#0d5e8a,#2196b5);padding:40px 30px;text-align:center;color:white;"><i class="fas fa-water" style="font-size:3rem;opacity:0.3;"></i><h3>漂流瓶</h3><textarea id="bottleMsg" placeholder="写下你想说的话..." rows="3" style="width:100%;padding:14px;border:none;border-radius:16px;margin:16px 0;font-size:0.95rem;resize:vertical;"></textarea><button onclick="throwBottle()" style="padding:12px 30px;background:rgba(255,255,255,0.2);color:white;border:2px solid rgba(255,255,255,0.5);border-radius:25px;font-size:1rem;font-weight:600;cursor:pointer;"><i class="fas fa-water"></i> 扔入大海</button></div><div style="background:linear-gradient(180deg,#b8dce8,#e8f4f8);padding:30px;text-align:center;"><i class="fas fa-fish" style="font-size:2.2rem;color:#0d5e8a;"></i><h4 style="color:#1a3a5c;">捞一个漂流瓶</h4><button onclick="pickBottle()" style="padding:10px 28px;background:#0d5e8a;color:white;border:none;border-radius:25px;cursor:pointer;margin:8px 0 14px;"><i class="fas fa-anchor"></i> 捞瓶子</button><div id="pickedBottle" style="padding:18px;background:white;border-radius:16px;display:none;"><p id="pickedMsg" style="color:#1a3a5c;font-style:italic;"></p ><span id="pickedTime" style="font-size:0.75rem;color:#6b705c;"></span></div></div></div></div>
+<script>
+// 加载照片墙
+
+(function() {
+  const wall = document.getElementById('heroPhotoWall');
+  if (!wall) return;
+  for (let i = 1; i <= 50; i++) {
+    const div = document.createElement('div');
+    div.style.backgroundImage = "url('" + i + ".jpg')";
+    div.style.backgroundSize = 'cover';
+    div.style.backgroundPosition = 'center';
+    div.style.borderRadius = '2px';
+    wall.appendChild(div);
+  }
+})();
+ // ===== 通用弹窗 =====
+    function openDetail(type) {
+      document.getElementById(type + 'Overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+      loadGrid(type + 'Grid', 35);
+      if (type === 'culture') earnStamp('stampSZ');
+      if (type === 'food') earnStamp('stampHEB');
+      if (type === 'nature') earnStamp('stampLY');
+      if (type === 'language') earnStamp('stampKR');
+    }
+    function closeDetail(type) {
+      document.getElementById(type + 'Overlay').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.detail-overlay').forEach(o => o.addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); }));
+
+    function loadGrid(gridId, count) {
+      const grid = document.getElementById(gridId);
+      if (!grid || grid.children.length > 0) return;
+      for (let i = 1; i <= count; i++) {
+        const div = document.createElement('div');
+        div.className = 'photo-item';
+        div.style.backgroundImage = `url('${101 + i - 1}.jpg')`;
+        grid.appendChild(div);
+      }
+    }
+
+    // ===== 点赞 =====
+    const likes = { culture: 0, food: 0, nature: 0, language: 0 };
+    function addLike(type) {
+      likes[type]++;
+      document.getElementById('like' + type.charAt(0).toUpperCase() + type.slice(1)).textContent = likes[type];
+    }
+
+    // ===== 护照印章 =====
+    function earnStamp(id) {
+      const el = document.getElementById(id);
+      if (el && !el.classList.contains('earned')) {
+        el.classList.add('earned');
+        if (document.querySelectorAll('.stamp-inline.earned').length === 4) {
+          setTimeout(() => alert('🎉 恭喜！你集齐了全部印章！'), 500);
+        }
+      }
+    }
+
+    // ===== 城市弹窗 =====
+    function openCityDetail(city) {
+      const map = { shenzhen: 'Shenzhen', haerbin: 'Haerbin', luoyang: 'Luoyang', korea: 'Korea', jeju: 'Jeju' };
+      document.getElementById('city' + map[city] + 'Overlay').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCity(city) {
+      const map = { shenzhen: 'Shenzhen', haerbin: 'Haerbin', luoyang: 'Luoyang', korea: 'Korea', jeju: 'Jeju' };
+      document.getElementById('city' + map[city] + 'Overlay').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    // ===== 行程手册 =====
+    function openBrochure() { document.getElementById('brochureOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeBrochure() { document.getElementById('brochureOverlay').classList.remove('show'); document.body.style.overflow = ''; }
+
+    // ===== 心愿墙 =====
+ function openWishWall() { document.getElementById('wishWallOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; renderWishes(); }
+    function closeWishWall() { document.getElementById('wishWallOverlay').classList.remove('show'); document.body.style.overflow = ''; }
+    function submitWish() {
+      const name = document.getElementById('wishName').value.trim();
+      const country = document.getElementById('wishCountry').value.trim();
+      const message = document.getElementById('wishMessage').value.trim();
+      if (!name || !message) { alert('请填写名字和心愿'); return; }
+      const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
+      wishes.unshift({ name, country, message, time: new Date().toLocaleString() });
+      localStorage.setItem('wishes', JSON.stringify(wishes));
+      document.getElementById('wishName').value = '';
+      document.getElementById('wishCountry').value = '';
+      document.getElementById('wishMessage').value = '';
+      renderWishes();
+    }
+    function renderWishes() {
+      const wishes = JSON.parse(localStorage.getItem('wishes') || '[]');
+      const list = document.getElementById('wishList');
+      const empty = document.getElementById('wishEmpty');
+      list.querySelectorAll('.wish-card').forEach(e => e.remove());
+      if (wishes.length > 0) {
+        if (empty) empty.style.display = 'none';
+        wishes.forEach(w => {
+          const card = document.createElement('div');
+          card.className = 'wish-card';
+          card.style.cssText = 'background:white;border-radius:16px;padding:18px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,0.05);';
+          card.innerHTML = `<div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#7f8c6b,#3a4e3f);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;">${w.name.charAt(0).toUpperCase()}</div><div><div style="font-weight:700;color:#3a4e3f;">${w.name}</div><div style="font-size:0.8rem;color:#7f8c6b;">${w.country||'未知'}</div></div><span style="margin-left:auto;font-size:0.75rem;color:#b0a89a;">${w.time}</span></div><p style="color:#4a4a4a;margin:0;">${w.message}</p >`;
+          list.appendChild(card);
+        });
+      } else { if (empty) empty.style.display = 'block'; }
+    }
+
+    // ===== 拼图 =====
+    let puzzlePieces = [0,1,2,3,4,5,6,7,8], puzzleSelected = null;
+    function openPuzzle() { document.getElementById('puzzleOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; shufflePuzzle(); }
+    function closePuzzle() { document.getElementById('puzzleOverlay').classList.remove('show'); document.body.style.overflow = ''; }
+    function shufflePuzzle() {
+      puzzlePieces = [0,1,2,3,4,5,6,7,8].sort(() => Math.random() - 0.5);
+      puzzleSelected = null;
+      document.getElementById('puzzleMsg').textContent = '';
+      renderPuzzle();
+    }
+    function renderPuzzle() {
+      const board = document.getElementById('puzzleBoard');
+      board.innerHTML = '';
+      puzzlePieces.forEach((num, idx) => {
+        const div = document.createElement('div');
+        div.className = 'photo-item';
+        div.style.backgroundImage = 'url(sg.jpg)';
+        div.style.backgroundPosition = `-${(num%3)*100}px -${Math.floor(num/3)*100}px`;
+        div.style.backgroundSize = '300px 300px';
+        div.style.width = '100px'; div.style.height = '100px';
+        div.onclick = function() { selectPiece(idx); };
+        board.appendChild(div);
+      });
+    }
+    function selectPiece(idx) {
+      if (puzzleSelected === null) { puzzleSelected = idx; document.getElementById('puzzleBoard').children[idx].style.outline = '3px solid #3a4e3f'; }
+      else if (puzzleSelected === idx) { document.getElementById('puzzleBoard').children[idx].style.outline = 'none'; puzzleSelected = null; }
+      else {
+        [puzzlePieces[puzzleSelected], puzzlePieces[idx]] = [puzzlePieces[idx], puzzlePieces[puzzleSelected]];
+        document.getElementById('puzzleBoard').children[puzzleSelected].style.outline = 'none';
+        puzzleSelected = null;
+        renderPuzzle();
+        if (puzzlePieces.every((v, i) => v === i)) document.getElementById('puzzleMsg').textContent = '🎉 拼图完成！';
+      }
+    }
+
+// ===== 漂流瓶 =====
+    function openBottle() { document.getElementById('bottleOverlay').classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeBottle() { document.getElementById('bottleOverlay').classList.remove('show'); document.body.style.overflow = ''; }
+    function throwBottle() {
+      const msg = document.getElementById('bottleMsg').value.trim();
+      if (!msg) { alert('写点什么再扔吧！'); return; }
+      const bottles = JSON.parse(localStorage.getItem('bottles') || '[]');
+      bottles.push({ message: msg, time: new Date().toLocaleString() });
+      localStorage.setItem('bottles', JSON.stringify(bottles));
+      document.getElementById('bottleMsg').value = '';
+      alert('漂流瓶已扔入大海！');
+    }
+    function pickBottle() {
+      const bottles = JSON.parse(localStorage.getItem('bottles') || '[]');
+      if (bottles.length === 0) { alert('大海空空如也……'); return; }
+      const random = bottles[Math.floor(Math.random() * bottles.length)];
+      document.getElementById('pickedBottle').style.display = 'block';
+      document.getElementById('pickedMsg').textContent = random.message;
+      document.getElementById('pickedTime').textContent = random.time;
+    }
+
+    // ===== 悬浮球 =====
+    function toggleBall(ball) {
+      document.querySelectorAll('.float-ball').forEach(b => { if (b !== ball) b.classList.remove('active'); });
+      ball.classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) { if (!e.target.closest('.float-ball')) document.querySelectorAll('.float-ball').forEach(b => b.classList.remove('active')); });
+
+// 点击视频取消静音
+document.getElementById('heroVideo').addEventListener('click', function() {
+  this.muted = !this.muted;
+});
+// 平滑滚动
+document.querySelector('a[href="#heroVideo"]').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.getElementById('heroVideo').scrollIntoView({ behavior: 'smooth' });
+});   
+ // ===== 小宠物 =====
+    const petEl = document.getElementById('pet');
+    let mouseX = 0, mouseY = 0, petX = 0, petY = 0, hoverActive = false;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    function animatePet() {
+      petX += (mouseX - petX - 20) * 0.1;
+      petY += (mouseY - petY - 20) * 0.1;
+      petEl.style.left = petX + 'px';
+      petEl.style.top = petY + 'px';
+      requestAnimationFrame(animatePet);
+    }
+    animatePet();
+    function setDefault() { if (!hoverActive) petEl.innerHTML = '<i class="far fa-smile" style="font-size:2rem;color:#7f8c6b;"></i>'; }
+    document.addEventListener('click', function(e) {
+      if (e.target.closest('button, a, .float-ball, .itin-card, .photo-card')) return;
+      petEl.innerHTML = '<i class="far fa-grin-hearts" style="font-size:2rem;color:#e07b7b;"></i>';
+      setTimeout(setDefault, 900);
+    });
+    document.addEventListener('dblclick', function() {
+      petEl.innerHTML = '<i class="far fa-laugh-squint" style="font-size:2rem;color:#f5a623;"></i>';
+      setTimeout(setDefault, 1000);
+    });
+    document.querySelectorAll('button, a, .float-ball, .itin-card, .photo-card').forEach(el => {
+      el.addEventListener('mouseenter', function() { hoverActive = true; petEl.innerHTML = '<i class="far fa-smile-wink" style="font-size:2rem;color:#42a5f5;"></i>'; });
+      el.addEventListener('mouseleave', function() { hoverActive = false; petEl.innerHTML = '<i class="far fa-smile" style="font-size:2rem;color:#7f8c6b;"></i>'; });
+    });
+  </script>
+</body>
+</html>
