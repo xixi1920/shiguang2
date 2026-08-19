@@ -556,40 +556,5 @@ document.getElementById('heroVideo').addEventListener('click', function() {
       el.addEventListener('mouseleave', function() { hoverActive = false; petEl.innerHTML = '<i class="far fa-smile" style="font-size:2rem;color:#7f8c6b;"></i>'; });
     });
   </script>
-<script>
-const fwCanvas = document.createElement('canvas');
-fwCanvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9998;';
-document.body.appendChild(fwCanvas);
-const fwCtx = fwCanvas.getContext('2d');
-fwCanvas.width = window.innerWidth;
-fwCanvas.height = window.innerHeight;
-window.addEventListener('resize', () => { fwCanvas.width = window.innerWidth; fwCanvas.height = window.innerHeight; });
-document.addEventListener('click', function(e) {
-  for (let i = 0; i < 30; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const speed = Math.random() * 6 + 2;
-    const dx = Math.cos(angle) * speed;
-    const dy = Math.sin(angle) * speed;
-    let x = e.clientX;
-    let y = e.clientY;
-    const color = 'hsl(' + Math.floor(Math.random()*360) + ',100%,60%)';
-    let life = 60;
-    const timer = setInterval(() => {
-      x += dx;
-      y += dy;
-      dy += 0.2;
-      life--;
-      fwCtx.beginPath();
-      fwCtx.arc(x, y, 3, 0, Math.PI * 2);
-      fwCtx.fillStyle = color;
-      fwCtx.fill();
-      if (life <= 0) {
-        clearInterval(timer);
-        fwCtx.clearRect(x - 6, y - 6, 12, 12);
-      }
-    }, 16);
-  }
-});
-</script>
 </body>
 </html>
