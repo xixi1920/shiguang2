@@ -184,7 +184,12 @@
         </div>
       </div>
     </div>
-<!-- 广告区 -->
+<!-- 随机城市推荐 -->
+<div style="background: linear-gradient(135deg, #f0ede6, #e9e4d8); border-radius: 20px; padding: 20px 28px; margin: 20px 0 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div><strong style="color:#3a4e3f;"><i class="fas fa-dice"></i> 今日游学幸运城市</strong> <span id="randomCity" style="color:#7f8c6b; font-weight:600;">点一下试试</span></div>
+  <button onclick="drawCity()" style="padding:10px 20px;background:#3a4e3f;color:white;border:none;border-radius:25px;cursor:pointer;"><i class="fas fa-shuffle"></i> 抽一签</button>
+</div>
+    <!-- 广告区 -->
   <div class="features-ad">
     <div class="feature-text">
       <h2>为什么选择"拾光"？</h2>
@@ -331,13 +336,7 @@
 
 <!-- 心愿墙弹窗 -->
 <div class="detail-overlay" id="wishWallOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeWishWall()">&times;</button><div style="background:linear-gradient(135deg,#3a4e3f,#5a6e5f);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-feather-alt" style="font-size:2.5rem;"></i><h2>拾光 · 心愿留言墙</h2></div><div style="display:flex;flex-wrap:wrap;min-height:400px;"><div style="flex:1 1 320px;padding:28px;"><input id="wishName" placeholder="你的名字" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><input id="wishCountry" placeholder="你来自哪里？" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><textarea id="wishMessage" placeholder="写下你的心愿..." rows="4" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;resize:vertical;font-family:inherit;"></textarea><button onclick="submitWish()" style="width:100%;padding:14px;background:#3a4e3f;color:white;border:none;border-radius:14px;font-size:1.1rem;font-weight:600;cursor:pointer;"><i class="fas fa-paper-plane"></i> 发布心愿</button></div><div style="flex:1 1 380px;padding:28px;background:#f5f2eb;max-height:450px;overflow-y:auto;" id="wishList"><div id="wishEmpty" style="text-align:center;color:#b0a89a;padding:60px 20px;"><i class="fas fa-inbox" style="font-size:3rem;"></i><p>还没有心愿留言</p ></div></div></div></div></div>
-  <div style="padding:0 28px 28px;">
-  <div style="background:white;border-radius:16px;padding:18px;box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-    <div style="font-weight:600;color:#3a4e3f;margin-bottom:10px;"><i class="fas fa-dice"></i> 今日游学小幸运</div>
-    <p id="luckyTip" style="color:#4a4a4a;font-size:0.9rem;">点击按钮，看看今天适合去哪里？</p >
-    <button onclick="drawLucky()" style="padding:10px 20px;background:#3a4e3f;color:white;border:none;border-radius:20px;cursor:pointer;"><i class="fas fa-shuffle"></i> 抽一签</button>
-  </div>
-</div>
+
 
   <!-- 拼图弹窗 -->
   <div class="detail-overlay" id="puzzleOverlay"><div class="detail-panel" style="max-width:500px;padding:30px;text-align:center;"><button class="detail-close" onclick="closePuzzle()">&times;</button><h3><i class="fas fa-puzzle-piece"></i> 游学拼图</h3><div class="detail-photo-grid" id="puzzleBoard" style="grid-template-columns:repeat(3,1fr);width:300px;margin:16px auto;"></div><button onclick="shufflePuzzle()" style="padding:10px 24px;background:#3a4e3f;color:white;border:none;border-radius:20px;cursor:pointer;font-weight:600;"><i class="fas fa-random"></i> 重新打乱</button><p id="puzzleMsg" style="margin-top:10px;font-weight:600;color:#3a4e3f;"></p ></div></div>
@@ -549,10 +548,10 @@ document.getElementById('heroVideo').addEventListener('click', function() {
       el.addEventListener('mouseleave', function() { hoverActive = false; petEl.innerHTML = '<i class="far fa-smile" style="font-size:2rem;color:#7f8c6b;"></i>'; });
     });
   </script>
-function drawLucky() {
-  const tips = ['深圳 · 科创硅谷', '哈尔滨 · 冰城夏都', '洛阳 · 千年古都', '韩国 · K-Culture', '济州岛 · 海岛风情'];
-  const random = tips[Math.floor(Math.random() * tips.length)];
-  document.getElementById('luckyTip').textContent = '今日推荐：' + random + '！';
-}
+<!-- 随机城市推荐 -->
+<div style="background: linear-gradient(135deg, #f0ede6, #e9e4d8); border-radius: 20px; padding: 20px 28px; margin: 20px 0 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+  <div><strong style="color:#3a4e3f;"><i class="fas fa-dice"></i> 今日游学幸运城市</strong> <span id="randomCity" style="color:#7f8c6b; font-weight:600;">点一下试试</span></div>
+  <button onclick="drawCity()" style="padding:10px 20px;background:#3a4e3f;color:white;border:none;border-radius:25px;cursor:pointer;"><i class="fas fa-shuffle"></i> 抽一签</button>
+</div>
 </body>
 </html>
