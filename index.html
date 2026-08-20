@@ -588,7 +588,7 @@ document.getElementById('heroVideo').addEventListener('click', function() {
   }
 
 function drawParticles() {
-  ctx.fillStyle = 'rgba(255,255,255,0.05)';
+  ctx.fillStyle = 'rgba(255,255,255,0)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   for (var i = particles.length - 1; i >= 0; i--) {
     var p = particles[i];
