@@ -172,7 +172,7 @@
     </div>
   </div>
 
-  <div class="photo-card" style="background-image: url('shanghai.jpg'); background-size: cover; background-position: center; min-height: 300px;">
+ <div class="photo-card" onclick="openMoreVideo()" style="cursor:pointer; background-image: url('shanghai.jpg'); background-size: cover; background-position: center; min-height: 300px;">
     <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
       <div><h4>更多目的地</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-globe-asia"></i> 其他地区探索中</div><p style="color: #f0ede6; font-size: 0.85rem;">更多精彩游学线路即将上线</p ></div>
     </div>
@@ -366,7 +366,11 @@
 </div></div></div></div>
 
 <!-- 韩国北区弹窗 -->
-<div class="detail-overlay" id="cityKoreaOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('korea')">&times;</button><div style="background:linear-gradient(135deg,#f57c00,#e65100);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-globe-asia" style="font-size:2.5rem;"></i><h2>韩国北区 · 经典之旅</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">仁川登陆，首尔穿越，釜山海云台——韩国北区经典三城之旅。景福宫韩服体验，弘大街头K-pop舞蹈，明洞购物天堂，釜山札嘎其海鲜市场。韩牛烤肉、石锅拌饭、街头辣年糕，K-culture深度体验。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 仁川·首尔·釜山</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#f57c00;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+<div class="detail-overlay" id="cityKoreaOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('korea')">&times;</button><div style="background:linear-gradient(135deg,#f57c00,#e65100);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-globe-asia" style="font-size:2.5rem;"></i><h2>韩国北区 · 经典之旅</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">仁川登陆，首尔穿越，釜山海云台——韩国北区经典三城之旅。景福宫韩服体验，弘大街头K-pop舞蹈，明洞购物天堂，釜山札嘎其海鲜市场。韩牛烤肉、石锅拌饭、街头辣年糕，K-culture深度体验。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 仁川·首尔·釜山</span></div></div><div style="flex:1 1 380px;padding:28px;">
+  <video controls muted loop playsinline style="width:100%;border-radius:12px;">
+    <source src="42.mp4" type="video/mp4">
+  </video>
+</div></div></div></div>
 
 <!-- 韩国南区弹窗 -->
 <div class="detail-overlay" id="cityJejuOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('jeju')">&times;</button><div style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-umbrella-beach" style="font-size:2.5rem;"></i><h2>韩国南区 · 济州海岛</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">济州岛，韩国的火山海岛明珠。汉拿山徒步登顶，偶来小路沿海蜿蜒，城山日出峰看日出。海女文化体验，品尝现捕海鲜。绿茶博物馆、泰迪熊博物馆，每一处都充满海岛独有的浪漫与惊喜。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 济州岛</span></div></div><div style="flex:1 1 380px;padding:28px;">
@@ -682,6 +686,20 @@ function drawParticles() {
   document.getElementById('worldCityOverlay').addEventListener('click', function(e) {
     if (e.target === this) closeWorldCity();
   });
+</script>
+  <div class="detail-overlay" id="moreVideoOverlay">
+  <div class="detail-panel" style="max-width:700px;padding:30px;text-align:center;">
+    <button class="detail-close" onclick="closeMoreVideo()">&times;</button>
+    <h3 style="color:#3a4e3f;margin-bottom:16px;">探索更多目的地</h3>
+    <video controls muted loop playsinline style="width:100%;border-radius:12px;">
+      <source src="44.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+<script>
+function openMoreVideo(){document.getElementById('moreVideoOverlay').classList.add('show');document.body.style.overflow='hidden';}
+function closeMoreVideo(){document.getElementById('moreVideoOverlay').classList.remove('show');document.body.style.overflow='';}
+document.getElementById('moreVideoOverlay').addEventListener('click',function(e){if(e.target===this)closeMoreVideo();});
 </script>
 </body>
 </html>
