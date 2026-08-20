@@ -166,12 +166,6 @@
     </div>
   </div>
 
-  <div class="photo-card" onclick="openCityDetail('jeju')" style="cursor: pointer; background-image: url('korea-south.jpg'); background-size: cover; background-position: center; min-height: 300px;">
-    <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
-      <div><h4>韩国南区 · 海岛风情</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-map-pin"></i> 济州岛</div><p style="color: #f0ede6; font-size: 0.85rem;">汉拿山徒步，偶来小路，海女文化</p ></div>
-    </div>
-  </div>
-
  <div class="photo-card" onclick="openMoreVideo()" style="cursor:pointer; background-image: url('shanghai.jpg'); background-size: cover; background-position: center; min-height: 300px;">
     <div style="background: linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 60%); height: 100%; display: flex; align-items: flex-end; padding: 24px 20px; color: white;">
       <div><h4>更多目的地</h4><div style="color: #e0dbd0; font-size: 0.9rem;"><i class="fas fa-globe-asia"></i> 其他地区探索中</div><p style="color: #f0ede6; font-size: 0.85rem;">更多精彩游学线路即将上线</p ></div>
@@ -347,11 +341,6 @@
     <source src="42.mp4" type="video/mp4">
   </video>
 </div></div></div></div>
-
-<!-- 韩国南区弹窗 -->
-<div class="detail-overlay" id="cityJejuOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('jeju')">&times;</button><div style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-umbrella-beach" style="font-size:2.5rem;"></i><h2>韩国南区 · 济州海岛</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">济州岛，韩国的火山海岛明珠。汉拿山徒步登顶，偶来小路沿海蜿蜒，城山日出峰看日出。海女文化体验，品尝现捕海鲜。绿茶博物馆、泰迪熊博物馆，每一处都充满海岛独有的浪漫与惊喜。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 济州岛</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;">
-  <img src="46.jpg" style="width:100%;height:260px;object-fit:cover;border-radius:12px;">
-</div>
 
 <!-- 心愿墙弹窗 -->
 <div class="detail-overlay" id="wishWallOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeWishWall()">&times;</button><div style="background:linear-gradient(135deg,#3a4e3f,#5a6e5f);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-feather-alt" style="font-size:2.5rem;"></i><h2>拾光 · 心愿留言墙</h2></div><div style="display:flex;flex-wrap:wrap;min-height:400px;"><div style="flex:1 1 320px;padding:28px;"><input id="wishName" placeholder="你的名字" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><input id="wishCountry" placeholder="你来自哪里？" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><textarea id="wishMessage" placeholder="写下你的心愿..." rows="4" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;resize:vertical;font-family:inherit;"></textarea><button onclick="submitWish()" style="width:100%;padding:14px;background:#3a4e3f;color:white;border:none;border-radius:14px;font-size:1.1rem;font-weight:600;cursor:pointer;"><i class="fas fa-paper-plane"></i> 发布心愿</button></div><div style="flex:1 1 380px;padding:28px;background:#f5f2eb;max-height:450px;overflow-y:auto;" id="wishList"><div id="wishEmpty" style="text-align:center;color:#b0a89a;padding:60px 20px;"><i class="fas fa-inbox" style="font-size:3rem;"></i><p>还没有心愿留言</p ></div></div></div></div></div>
@@ -627,53 +616,6 @@ function drawParticles() {
 
   drawParticles();
 })();
-</script>
-  <!-- 全球城市弹窗 -->
-<div class="detail-overlay" id="worldCityOverlay">
-  <div class="detail-panel" style="max-width:500px;text-align:center;padding:30px;">
-    <button class="detail-close" onclick="closeWorldCity()">&times;</button>
-    <h3 id="worldCityName" style="color:#3a4e3f;margin-bottom:4px;"></h3>
-    <p id="worldCityDesc" style="color:#7f8c6b;margin-bottom:16px;"></p >
-    <div id="worldCityImg" style="width:100%;height:260px;border-radius:16px;background-size:cover;background-position:center;background-color:#f0ede6;"></div>
-    <p style="margin-top:16px;color:#b0a89a;font-size:0.8rem;">后续可替换为真实城市照片</p >
-  </div>
-</div>
-
-<script>
-  const worldCities = {
-    '深圳': 'city1.jpg', '哈尔滨': 'city2.jpg', '洛阳': 'city3.jpg', '首尔': 'city4.jpg',
-    '济州岛': 'city5.jpg', '东京': 'city6.jpg', '巴黎': 'city7.jpg', '伦敦': 'city8.jpg',
-    '纽约': 'city9.jpg', '新加坡': 'city10.jpg', '曼谷': 'city11.jpg', '迪拜': 'city12.jpg',
-    '悉尼': 'city13.jpg', '开罗': 'city14.jpg'
-  };
-  function openWorldCity(name, desc) {
-    document.getElementById('worldCityName').textContent = name;
-    document.getElementById('worldCityDesc').textContent = desc;
-    document.getElementById('worldCityImg').style.backgroundImage = "url('" + worldCities[name] + "')";
-    document.getElementById('worldCityOverlay').classList.add('show');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeWorldCity() {
-    document.getElementById('worldCityOverlay').classList.remove('show');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('worldCityOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeWorldCity();
-  });
-</script>
-  <div class="detail-overlay" id="moreVideoOverlay">
-  <div class="detail-panel" style="max-width:700px;padding:30px;text-align:center;">
-    <button class="detail-close" onclick="closeMoreVideo()">&times;</button>
-    <h3 style="color:#3a4e3f;margin-bottom:16px;">探索更多目的地</h3>
-    <video controls muted loop playsinline style="width:100%;border-radius:12px;">
-      <source src="44.mp4" type="video/mp4">
-    </video>
-  </div>
-</div>
-<script>
-function openMoreVideo(){document.getElementById('moreVideoOverlay').classList.add('show');document.body.style.overflow='hidden';}
-function closeMoreVideo(){document.getElementById('moreVideoOverlay').classList.remove('show');document.body.style.overflow='';}
-document.getElementById('moreVideoOverlay').addEventListener('click',function(e){if(e.target===this)closeMoreVideo();});
 </script>
 </body>
 </html>
