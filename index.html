@@ -192,6 +192,30 @@
 <style>
   @keyframes scrollNotice { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 </style>
+  <!-- 全球游学地球仪 -->
+<div style="background:linear-gradient(135deg,#1a1a2e,#16213e);border-radius:28px;padding:36px 28px;margin:30px 0;text-align:center;">
+  <h3 style="color:#fff;margin-bottom:20px;"><i class="fas fa-globe-americas"></i> 全球游学探索</h3>
+  <div id="globe3d" style="width:220px;height:220px;margin:0 auto 24px;position:relative;perspective:600px;">
+    <div style="width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 35% 30%, #4da6ff, #1a3a5c);box-shadow:inset 0 0 40px rgba(0,0,0,0.5),0 0 30px rgba(66,165,245,0.3);animation:spin 12s linear infinite;"></div>
+  </div>
+  <style>@keyframes spin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}</style>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:600px;margin:0 auto;">
+    <button onclick="openWorldCity('深圳','深圳科创硅谷')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">深圳</button>
+    <button onclick="openWorldCity('哈尔滨','冰城夏都')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">哈尔滨</button>
+    <button onclick="openWorldCity('洛阳','千年古都')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">洛阳</button>
+    <button onclick="openWorldCity('首尔','K-Culture')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">首尔</button>
+    <button onclick="openWorldCity('济州岛','海岛风情')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">济州岛</button>
+    <button onclick="openWorldCity('东京','动漫之都')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">东京</button>
+    <button onclick="openWorldCity('巴黎','艺术浪漫')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">巴黎</button>
+    <button onclick="openWorldCity('伦敦','英伦风情')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">伦敦</button>
+    <button onclick="openWorldCity('纽约','都市脉搏')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">纽约</button>
+    <button onclick="openWorldCity('新加坡','花园城市')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">新加坡</button>
+    <button onclick="openWorldCity('曼谷','微笑之国')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">曼谷</button>
+    <button onclick="openWorldCity('迪拜','奢华沙漠')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">迪拜</button>
+    <button onclick="openWorldCity('悉尼','南半球明珠')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">悉尼</button>
+    <button onclick="openWorldCity('开罗','古文明摇篮')" style="padding:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.3);color:white;border-radius:12px;cursor:pointer;">开罗</button>
+  </div>
+</div>  
     <!-- 广告区 -->
 <div class="features-ad">
 <div style="width:100%;text-align:center;margin-bottom:20px;">
@@ -327,7 +351,11 @@
 </div></div></div></div>
 
 <!-- 哈尔滨弹窗 -->
-<div class="detail-overlay" id="cityHaerbinOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('haerbin')">&times;</button><div style="background:linear-gradient(135deg,#42a5f5,#1e88e5);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="far fa-snowflake" style="font-size:2.5rem;"></i><h2>哈尔滨 · 冰城夏都</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">哈尔滨，被冰雪亲吻的城市。中央大街百年石路，圣索菲亚教堂穹顶熠熠生辉。冬季冰雪大世界如梦似幻，夏季太阳岛绿意盎然。秋林红肠、马迭尔冰棍、铁锅炖……北国风味让人难忘。拾光带你穿越中央大街，松花江畔听风，感受冰城的浪漫与坚韧。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 黑龙江·东北</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#1e88e5;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+<div class="detail-overlay" id="cityHaerbinOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('haerbin')">&times;</button><div style="background:linear-gradient(135deg,#42a5f5,#1e88e5);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="far fa-snowflake" style="font-size:2.5rem;"></i><h2>哈尔滨 · 冰城夏都</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">哈尔滨，被冰雪亲吻的城市。中央大街百年石路，圣索菲亚教堂穹顶熠熠生辉。冬季冰雪大世界如梦似幻，夏季太阳岛绿意盎然。秋林红肠、马迭尔冰棍、铁锅炖……北国风味让人难忘。拾光带你穿越中央大街，松花江畔听风，感受冰城的浪漫与坚韧。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 黑龙江·东北</span></div></div><div style="flex:1 1 380px;padding:28px;">
+  <video controls muted loop playsinline style="width:100%;border-radius:12px;">
+    <source src="haerbin-video.mp4" type="video/mp4">
+  </video>
+</div></div></div></div>
 
 <!-- 洛阳弹窗 -->
 <div class="detail-overlay" id="cityLuoyangOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('luoyang')">&times;</button><div style="background:linear-gradient(135deg,#d4a574,#b8860b);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-landmark" style="font-size:2.5rem;"></i><h2>洛阳 · 千年古都</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">洛阳，十三朝古都。龙门石窟十万佛像静默千年，白马寺钟声是中国佛教第一声回响。四月牡丹花开满城，洛阳水席流淌盛唐遗风。牛肉汤配烧饼是最温暖的清晨。拾光带你走进龙门山色，制作唐三彩，感受华夏文明的厚重与辉煌。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 河南·中原</span></div></div><div style="flex:1 1 380px;padding:28px;">
@@ -340,7 +368,11 @@
 <div class="detail-overlay" id="cityKoreaOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('korea')">&times;</button><div style="background:linear-gradient(135deg,#f57c00,#e65100);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-globe-asia" style="font-size:2.5rem;"></i><h2>韩国北区 · 经典之旅</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">仁川登陆，首尔穿越，釜山海云台——韩国北区经典三城之旅。景福宫韩服体验，弘大街头K-pop舞蹈，明洞购物天堂，釜山札嘎其海鲜市场。韩牛烤肉、石锅拌饭、街头辣年糕，K-culture深度体验。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 仁川·首尔·釜山</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#f57c00;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
 
 <!-- 韩国南区弹窗 -->
-<div class="detail-overlay" id="cityJejuOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('jeju')">&times;</button><div style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-umbrella-beach" style="font-size:2.5rem;"></i><h2>韩国南区 · 济州海岛</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">济州岛，韩国的火山海岛明珠。汉拿山徒步登顶，偶来小路沿海蜿蜒，城山日出峰看日出。海女文化体验，品尝现捕海鲜。绿茶博物馆、泰迪熊博物馆，每一处都充满海岛独有的浪漫与惊喜。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 济州岛</span></div></div><div style="flex:1 1 380px;padding:28px;display:flex;align-items:center;justify-content:center;color:#27ae60;"><i class="fas fa-images" style="font-size:4rem;opacity:0.5;"></i></div></div></div></div>
+<div class="detail-overlay" id="cityJejuOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeCity('jeju')">&times;</button><div style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-umbrella-beach" style="font-size:2.5rem;"></i><h2>韩国南区 · 济州海岛</h2></div><div style="display:flex;flex-wrap:wrap;"><div style="flex:1 1 300px;padding:28px;"><div class="detail-intro">济州岛，韩国的火山海岛明珠。汉拿山徒步登顶，偶来小路沿海蜿蜒，城山日出峰看日出。海女文化体验，品尝现捕海鲜。绿茶博物馆、泰迪熊博物馆，每一处都充满海岛独有的浪漫与惊喜。</div><div style="margin-top:16px;"><span class="tag"><i class="fas fa-map-pin"></i> 济州岛</span></div></div><div style="flex:1 1 380px;padding:28px;">
+  <video controls muted loop playsinline style="width:100%;border-radius:12px;">
+    <source src="jeju-video.mp4" type="video/mp4">
+  </video>
+</div></div></div></div>
 
 <!-- 心愿墙弹窗 -->
 <div class="detail-overlay" id="wishWallOverlay"><div class="detail-panel"><button class="detail-close" onclick="closeWishWall()">&times;</button><div style="background:linear-gradient(135deg,#3a4e3f,#5a6e5f);color:white;padding:30px 36px;border-radius:28px 28px 0 0;text-align:center;"><i class="fas fa-feather-alt" style="font-size:2.5rem;"></i><h2>拾光 · 心愿留言墙</h2></div><div style="display:flex;flex-wrap:wrap;min-height:400px;"><div style="flex:1 1 320px;padding:28px;"><input id="wishName" placeholder="你的名字" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><input id="wishCountry" placeholder="你来自哪里？" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;"><textarea id="wishMessage" placeholder="写下你的心愿..." rows="4" style="width:100%;padding:12px;border:2px solid #e0dbd0;border-radius:12px;margin-bottom:12px;font-size:0.95rem;resize:vertical;font-family:inherit;"></textarea><button onclick="submitWish()" style="width:100%;padding:14px;background:#3a4e3f;color:white;border:none;border-radius:14px;font-size:1.1rem;font-weight:600;cursor:pointer;"><i class="fas fa-paper-plane"></i> 发布心愿</button></div><div style="flex:1 1 380px;padding:28px;background:#f5f2eb;max-height:450px;overflow-y:auto;" id="wishList"><div id="wishEmpty" style="text-align:center;color:#b0a89a;padding:60px 20px;"><i class="fas fa-inbox" style="font-size:3rem;"></i><p>还没有心愿留言</p ></div></div></div></div></div>
@@ -616,6 +648,39 @@ function drawParticles() {
 
   drawParticles();
 })();
+</script>
+  <!-- 全球城市弹窗 -->
+<div class="detail-overlay" id="worldCityOverlay">
+  <div class="detail-panel" style="max-width:500px;text-align:center;padding:30px;">
+    <button class="detail-close" onclick="closeWorldCity()">&times;</button>
+    <h3 id="worldCityName" style="color:#3a4e3f;margin-bottom:4px;"></h3>
+    <p id="worldCityDesc" style="color:#7f8c6b;margin-bottom:16px;"></p >
+    <div id="worldCityImg" style="width:100%;height:260px;border-radius:16px;background-size:cover;background-position:center;background-color:#f0ede6;"></div>
+    <p style="margin-top:16px;color:#b0a89a;font-size:0.8rem;">后续可替换为真实城市照片</p >
+  </div>
+</div>
+
+<script>
+  const worldCities = {
+    '深圳': 'city1.jpg', '哈尔滨': 'city2.jpg', '洛阳': 'city3.jpg', '首尔': 'city4.jpg',
+    '济州岛': 'city5.jpg', '东京': 'city6.jpg', '巴黎': 'city7.jpg', '伦敦': 'city8.jpg',
+    '纽约': 'city9.jpg', '新加坡': 'city10.jpg', '曼谷': 'city11.jpg', '迪拜': 'city12.jpg',
+    '悉尼': 'city13.jpg', '开罗': 'city14.jpg'
+  };
+  function openWorldCity(name, desc) {
+    document.getElementById('worldCityName').textContent = name;
+    document.getElementById('worldCityDesc').textContent = desc;
+    document.getElementById('worldCityImg').style.backgroundImage = "url('" + worldCities[name] + "')";
+    document.getElementById('worldCityOverlay').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWorldCity() {
+    document.getElementById('worldCityOverlay').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('worldCityOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeWorldCity();
+  });
 </script>
 </body>
 </html>
